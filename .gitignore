@@ -14,5 +14,12 @@ logs/
 # Audited third-party reference repos (not part of our history)
 reference/
 
+# Claude Code session context (local only, not part of the toolkit)
+CLAUDE.md
+MASTER_BRIEF.md
+MONTH1_SCOPE.md
+DECISIONS.md
+.claude/
+
 # OS / editor cruft
 .DS_Store
