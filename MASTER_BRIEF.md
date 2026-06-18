@@ -56,7 +56,7 @@ No existing package combines: runtime bidirectional ROS 2 control + formalized s
 | MCP framework | FastMCP (Python) | Cleanest Python MCP server implementation |
 | Primary simulation | Gazebo + TurtleBot3 | Widely available, reproducible across machines |
 | Config format | YAML | Human-readable, easy for engineers to modify |
-| Claude integration | Claude Desktop (Month 1), Claude Code (Month 3+) | |
+| Claude integration | Claude Code (Month 1 onward) | Claude Desktop has no Linux build (ADR-008) |
 
 ---
 

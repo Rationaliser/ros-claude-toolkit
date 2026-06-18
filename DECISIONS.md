@@ -68,6 +68,20 @@
 
 ---
 
+## ADR-008 — MCP Client: Claude Code (not Claude Desktop)
+**Date:** June 2026
+**Decision:** Use Claude Code as the Month 1 MCP integration client instead of Claude Desktop.
+**Reason:** Anthropic does not ship an official Claude Desktop build for Linux. Claude Code is
+the officially supported Linux path, has full MCP support, and is already the development tool
+in use — no new install, no extra RAM pressure on an 8GB demo machine.
+**Alternatives considered:** Unofficial Linux Desktop build (third-party, unsigned, unnecessary
+risk); requiring a second Mac/Windows machine for the demo (adds complexity and failure points).
+**Consequence:** MASTER_BRIEF.md's "Claude integration" row needs updating — Claude Code is now
+both the Month 1 and Month 3+ client. Demo proof strategy unaffected — same tool-call visibility.
+**Status:** Locked
+
+---
+
 ## [TEMPLATE — copy for new decisions]
 ## ADR-00X — [Title]
 **Date:**
