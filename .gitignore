@@ -14,6 +14,9 @@ logs/
 # Audited third-party reference repos (not part of our history)
 reference/
 
+# Claude Code MCP config (absolute paths, dev-local)
+.mcp.json
+
 # Claude Code session context (local only, not part of the toolkit)
 CLAUDE.md
 MASTER_BRIEF.md
