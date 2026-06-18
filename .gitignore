@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Environment / secrets
+.env
+
+# Runtime logs (command audit log lives here, never committed)
+logs/
+
+# Audited third-party reference repos (not part of our history)
+reference/
+
+# OS / editor cruft
+.DS_Store
