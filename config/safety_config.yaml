@@ -1,0 +1,25 @@
+# safety_config.yaml
+# STUB — Week 2. No code reads this file yet. The Safety Layer that enforces these
+# values (velocity clamping, workspace bounds, confirmation gate) is built in Week 3.
+# Schema below is the Week 3 contract (MONTH1_SCOPE.md); values are placeholders.
+
+velocity_limits:
+  linear_x:
+    max: 0.5      # m/s — hard ceiling   # STUB — enforced in Week 3
+    min: -0.5     # STUB — enforced in Week 3
+  angular_z:
+    max: 1.0      # rad/s                # STUB — enforced in Week 3
+    min: -1.0     # STUB — enforced in Week 3
+
+confirmation_required:                   # STUB — enforced in Week 3
+  - /robot/emergency_stop
+  - /robot/arm/move_to_pose              # placeholder for future
+
+workspace_bounds:                        # STUB — enforced in Week 3
+  x: [-5.0, 5.0]   # metres from origin
+  y: [-5.0, 5.0]
+
+logging:                                 # STUB — enforced in Week 3
+  enabled: true
+  path: logs/commands.log
+  format: "[{timestamp}] {tool} | {args} | {outcome}"

@@ -1,3 +1,6 @@
 fastmcp>=2.0,<4.0
-roslibpy>=1.0,<2.0
+roslibpy>=2.0,<3.0
 pyyaml>=6.0,<7.0
+
+# dev / test
+pytest>=9.0,<10.0
