@@ -49,13 +49,13 @@ def test_ros_echo_topic_unresolvable_type_is_error(tools):
 
 # --- ros_publish_topic ------------------------------------------------------
 
-def test_ros_publish_topic_publishes_and_reports_safety_hook(tools, fake_client):
+def test_ros_publish_topic_publishes_and_reports_safety_layer(tools, fake_client):
     msg = {"linear": {"x": 0.2}, "angular": {"z": 0.0}}
     result = tools["ros_publish_topic"](topic="/cmd_vel", message=msg)
     _assert_contract(result)
     assert result["status"] == "success"
-    # safety hook is present but a no-op in Week 2
-    assert result["safety_applied"] is False
+    # within limits, but the safety layer still evaluated the cmd_vel publish
+    assert result["safety_applied"] is True
     # publish actually reached the transport with the resolved type
     assert fake_client.published == [("/cmd_vel", "geometry_msgs/Twist", msg)]
 

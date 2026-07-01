@@ -10,10 +10,23 @@ import os
 import sys
 
 import pytest
+import yaml
 
 MCP_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "mcp")
 if MCP_DIR not in sys.path:
     sys.path.insert(0, MCP_DIR)
+
+# Values mirror the shipped config so clamp/gate tests exercise real limits, but the log is
+# redirected to a temp file so tests never write to the repo's logs/commands.log.
+_TEST_SAFETY_CONFIG = {
+    "velocity_limits": {
+        "linear_x": {"max": 0.5, "min": -0.5},
+        "angular_z": {"max": 1.0, "min": -1.0},
+    },
+    "confirmation_required": ["/robot/emergency_stop"],
+    "workspace_bounds": {"x": [-5.0, 5.0], "y": [-5.0, 5.0]},
+    "logging": {"enabled": True, "path": "commands.log", "format": "..."},
+}
 
 from fastmcp import FastMCP  # noqa: E402  (import after sys.path setup)
 
@@ -51,7 +64,10 @@ class FakeClient:
         return {"services": ["/reset_simulation", "/rosapi/topics"]}
 
     def service_type(self, service: str) -> str:
-        return {"/reset_simulation": "std_srvs/Empty"}.get(service, "")
+        return {
+            "/reset_simulation": "std_srvs/Empty",
+            "/robot/emergency_stop": "std_srvs/Empty",
+        }.get(service, "")
 
     def call_service(self, service, srv_type, args=None) -> dict:
         return {"called": service, "args": args or {}}
@@ -80,6 +96,28 @@ def _build_tool_map(client) -> dict:
         "ros_set_param",
     ]
     return {name: asyncio.run(mcp.get_tool(name)).fn for name in names}
+
+
+@pytest.fixture
+def safety_config_path(tmp_path) -> str:
+    """Write a per-test temp safety config (log path inside tmp) and return its path."""
+    config = {**_TEST_SAFETY_CONFIG, "logging": {
+        **_TEST_SAFETY_CONFIG["logging"], "path": str(tmp_path / "commands.log")}}
+    cfg = tmp_path / "safety_config.yaml"
+    cfg.write_text(yaml.safe_dump(config))
+    return str(cfg)
+
+
+@pytest.fixture(autouse=True)
+def _use_temp_safety_config(safety_config_path, monkeypatch) -> None:
+    """Point the safety layer at the temp config so tools never touch the real config/logs."""
+    monkeypatch.setenv("ROS_SAFETY_CONFIG", safety_config_path)
+
+
+@pytest.fixture
+def safety_log_path(safety_config_path) -> str:
+    """Path to the temp command log backing the active safety config."""
+    return yaml.safe_load(open(safety_config_path))["logging"]["path"]
 
 
 @pytest.fixture

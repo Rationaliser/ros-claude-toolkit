@@ -1,25 +1,26 @@
 # safety_config.yaml
-# STUB — Week 2. No code reads this file yet. The Safety Layer that enforces these
-# values (velocity clamping, workspace bounds, confirmation gate) is built in Week 3.
-# Schema below is the Week 3 contract (MONTH1_SCOPE.md); values are placeholders.
+# Live safety configuration for ros-claude-toolkit. The Safety Layer reads this file on every
+# tool call: velocity clamping (velocity_limits), workspace-bounds enforcement (workspace_bounds),
+# the confirmation gate (confirmation_required), and the command audit log (logging).
+# Edit these values freely — changes take effect on the next tool call. Code never writes here.
 
 velocity_limits:
   linear_x:
-    max: 0.5      # m/s — hard ceiling   # STUB — enforced in Week 3
-    min: -0.5     # STUB — enforced in Week 3
+    max: 0.5      # m/s — hard ceiling
+    min: -0.5
   angular_z:
-    max: 1.0      # rad/s                # STUB — enforced in Week 3
-    min: -1.0     # STUB — enforced in Week 3
+    max: 1.0      # rad/s
+    min: -1.0
 
-confirmation_required:                   # STUB — enforced in Week 3
+confirmation_required:
   - /robot/emergency_stop
   - /robot/arm/move_to_pose              # placeholder for future
 
-workspace_bounds:                        # STUB — enforced in Week 3
+workspace_bounds:
   x: [-5.0, 5.0]   # metres from origin
   y: [-5.0, 5.0]
 
-logging:                                 # STUB — enforced in Week 3
+logging:
   enabled: true
   path: logs/commands.log
   format: "[{timestamp}] {tool} | {args} | {outcome}"
