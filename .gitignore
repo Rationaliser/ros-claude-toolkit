@@ -17,6 +17,10 @@ reference/
 # Claude Code MCP config (absolute paths, dev-local)
 .mcp.json
 
+# Local demo / test notes (not part of the toolkit)
+DEMO_CHECKLIST.md
+CROSS_MACHINE_TEST.md
+
 # Claude Code session context (local only, not part of the toolkit)
 CLAUDE.md
 MASTER_BRIEF.md
