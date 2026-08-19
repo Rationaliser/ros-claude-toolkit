@@ -1,4 +1,4 @@
-# ros-claude-toolkit
+# ros-llm-toolkit
 
 > A safety-aware MCP server and Claude Skills suite for ROS 2 engineering.
 
