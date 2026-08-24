@@ -1,1 +1,1 @@
-"""MCP tool modules for ros-claude-toolkit."""
+"""MCP tool modules for ros-llm-toolkit."""

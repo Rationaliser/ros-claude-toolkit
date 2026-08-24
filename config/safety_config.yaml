@@ -1,5 +1,5 @@
 # safety_config.yaml
-# Live safety configuration for ros-claude-toolkit. The Safety Layer reads this file on every
+# Live safety configuration for ros-llm-toolkit. The Safety Layer reads this file on every
 # tool call: velocity clamping (velocity_limits), workspace-bounds enforcement (workspace_bounds),
 # the confirmation gate (confirmation_required), and the command audit log (logging).
 # Edit these values freely — changes take effect on the next tool call. Code never writes here.

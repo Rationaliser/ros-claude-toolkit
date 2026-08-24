@@ -2,7 +2,7 @@
 
 > A safety-aware MCP server and Claude Skills suite for ROS 2 engineering.
 
-`ros-claude-toolkit` lets Claude inspect and control a ROS 2 system through natural
+`ros-llm-toolkit` lets Claude inspect and control a ROS 2 system through natural
 language, with a safety layer that clamps velocities, gates destructive operations behind
 confirmation, and logs every command. Month 1 targets a live demo: Claude driving a
 TurtleBot3 in Gazebo, safely.
@@ -47,8 +47,8 @@ Three commands. `install.sh` creates a repo-local `.venv`, installs the toolkit'
 dependencies, verifies rosbridge, and generates `.mcp.json` with absolute paths for Claude Code.
 
 ```bash
-git clone https://github.com/<username>/ros-claude-toolkit.git
-cd ros-claude-toolkit
+git clone https://github.com/<username>/ros-llm-toolkit.git
+cd ros-llm-toolkit
 bash install.sh
 ```
 

@@ -135,7 +135,7 @@ High. Requires: colcon workspace build OR manual NumPy/FastMCP version pinning. 
 
 ## Comparison Summary
 
-| Feature | robotmcp/ros-mcp-server | LCAS/ros2_mcp | ros-claude-toolkit (target) |
+| Feature | robotmcp/ros-mcp-server | LCAS/ros2_mcp | ros-llm-toolkit (target) |
 |---|---|---|---|
 | Transport | rosbridge WebSocket | rclpy native (DDS) | rosbridge (Month 1), rclpy (Month 2) |
 | MCP-native | ✅ | ✅ | ✅ |
@@ -148,7 +148,7 @@ High. Requires: colcon workspace build OR manual NumPy/FastMCP version pinning. 
 | Command logging | ❌ | ❌ | ✅ logs/commands.log |
 | Confirmation gate | ❌ | ❌ | ✅ blacklist config |
 
-## Key Findings for ros-claude-toolkit
+## Key Findings for ros-llm-toolkit
 
 1. **The safety gap is real.** Both existing tools publish velocities without any bounds checking. Our `SafetyMiddleware` fills a genuine missing feature, not a duplicate one.
 

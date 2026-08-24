@@ -1,4 +1,4 @@
-"""FastMCP entry point for ros-claude-toolkit.
+"""FastMCP entry point for ros-llm-toolkit.
 
 Run directly: ``python mcp/server.py``. This file lives in ``mcp/`` which is a *script
 directory*, not an importable package (there is intentionally no ``mcp/__init__.py``).
@@ -21,7 +21,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-mcp = FastMCP("ros-claude-toolkit")
+mcp = FastMCP("ros-llm-toolkit")
 client = RosbridgeClient()
 
 register_topic_tools(mcp, client)
@@ -30,5 +30,5 @@ register_param_tools(mcp, client)
 
 
 if __name__ == "__main__":
-    logger.info("Starting ros-claude-toolkit MCP server")
+    logger.info("Starting ros-llm-toolkit MCP server")
     mcp.run()

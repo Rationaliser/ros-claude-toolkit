@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# install.sh — ros-claude-toolkit cross-machine installer (Month 1)
+# install.sh — ros-llm-toolkit cross-machine installer (Month 1)
 #
 # Installs the TOOLKIT's Python dependencies into a repo-local .venv and generates a
 # .mcp.json with absolute paths for Claude Code. It does NOT install ROS 2, Gazebo, or
@@ -25,14 +25,14 @@ error() { printf '%s%s%s\n' "$RED"    "$1" "$RESET" >&2; }
 # --- bash >= 4.0 guard (macOS ships bash 3; this toolkit is Linux-only) -------------
 if (( BASH_VERSINFO[0] < 4 )); then
     error "This installer needs bash >= 4.0 (found ${BASH_VERSION})."
-    error "macOS ships bash 3 — ros-claude-toolkit is Linux-only. Run this on Ubuntu."
+    error "macOS ships bash 3 — ros-llm-toolkit is Linux-only. Run this on Ubuntu."
     exit 1
 fi
 
 # --- resolve repo root (never relative, never hardcoded) ----------------------------
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-info "==> ros-claude-toolkit installer"
+info "==> ros-llm-toolkit installer"
 printf '    Repo root: %s\n' "$REPO_ROOT"
 
 # --- detect ROS 2 distro ------------------------------------------------------------
@@ -66,7 +66,7 @@ case "$ROS_DISTRO_DETECTED" in
         ;;
     *)
         error "Unsupported ROS distro: '${ROS_DISTRO_DETECTED}'."
-        error "ros-claude-toolkit Month 1 supports only: humble, jazzy."
+        error "ros-llm-toolkit Month 1 supports only: humble, jazzy."
         exit 1
         ;;
 esac
@@ -111,7 +111,7 @@ info "==> Writing $MCP_JSON"
 cat > "$MCP_JSON" <<EOF
 {
   "mcpServers": {
-    "ros-claude-toolkit": {
+    "ros-llm-toolkit": {
       "type": "stdio",
       "command": "$VENV_PY",
       "args": ["$REPO_ROOT/mcp/server.py"]

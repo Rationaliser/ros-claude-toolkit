@@ -1,4 +1,4 @@
-"""roslibpy WebSocket wrapper for the ros-claude-toolkit MCP server.
+"""roslibpy WebSocket wrapper for the ros-llm-toolkit MCP server.
 
 Thin transport layer over rosbridge (ADR-002). One persistent ``roslibpy.Ros`` connection is
 created lazily on first use and reused; roslibpy runs its own background event-loop thread, so
