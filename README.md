@@ -47,7 +47,7 @@ Three commands. `install.sh` creates a repo-local `.venv`, installs the toolkit'
 dependencies, verifies rosbridge, and generates `.mcp.json` with absolute paths for Claude Code.
 
 ```bash
-git clone https://github.com/<username>/ros-llm-toolkit.git
+git clone https://github.com/Rationaliser/ros-llm-toolkit.git
 cd ros-llm-toolkit
 bash install.sh
 ```
