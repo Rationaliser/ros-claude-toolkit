@@ -85,9 +85,9 @@ seven `ros_*` tools. Then try the demo prompts:
    → Claude echoes /odom
 
 3. "Move the robot forward at 2 metres per second"
-   → Safety layer clamps to 0.5 m/s; robot moves slowly; Claude explains the clamp
+   → Safety layer clamps to 0.22 m/s; robot moves slowly; Claude explains the clamp
 
-4. "Move the robot forward at 0.3 metres per second"
+4. "Move the robot forward at 0.2 metres per second"
    → Executes without clamping; robot moves
 
 5. "Call the emergency stop service"
@@ -106,7 +106,7 @@ publish and service call passes through. It reads `config/safety_config.yaml` on
 call (edit the YAML; changes take effect on the next call — code never writes to it).
 
 - **Velocity clamping** — publishes to `/cmd_vel` are clamped to the configured limits:
-  `linear.x` to ±0.5 m/s and `angular.z` to ±1.0 rad/s by default. Claude is told the original
+  `linear.x` to ±0.22 m/s and `angular.z` to ±1.0 rad/s by default. Claude is told the original
   and clamped values.
 - **Confirmation gate** — services in `confirmation_required` (e.g. `/robot/emergency_stop`)
   are blocked unless the call passes `confirm=True`.
@@ -116,7 +116,7 @@ call (edit the YAML; changes take effect on the next call — code never writes 
 Example clamp, straight from `logs/commands.log`:
 
 ```
-[2026-07-01T09:21:11.034771+00:00] TOOL=ros_publish_topic | ARGS={"message": {"angular": {"x": 0, "y": 0, "z": 0}, "linear": {"x": 0.6, "y": 0, "z": 0}}, "msg_type": "geometry_msgs/Twist", "topic": "/cmd_vel"} | OUTCOME=clamped | REASON=Velocity clamped: linear.x 0.6 → 0.5 (config limit: 0.5)
+[2026-07-01T09:21:11.034771+00:00] TOOL=ros_publish_topic | ARGS={"message": {"angular": {"x": 0, "y": 0, "z": 0}, "linear": {"x": 0.6, "y": 0, "z": 0}}, "msg_type": "geometry_msgs/Twist", "topic": "/cmd_vel"} | OUTCOME=clamped | REASON=Velocity clamped: linear.x 0.6 → 0.22 (config limit: 0.22)
 ```
 
 The safety layer cannot be bypassed through prompting — attempts are refused and logged.
